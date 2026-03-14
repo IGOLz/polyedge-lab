@@ -783,6 +783,11 @@ def main():
             from strategy_farming import run_farming_backtest
             run_farming_backtest(conn, run_id)
 
+        # ---- Step 11: Calibration Strategy Backtest ----
+        if not args.dry_run:
+            from strategy_calibration import run_calibration_backtest
+            run_calibration_backtest(conn, run_id)
+
     except Exception as e:
         conn.rollback()
         print(f'[Analysis] ERROR: {e}', file=sys.stderr)
