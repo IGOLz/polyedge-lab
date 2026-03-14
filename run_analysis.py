@@ -788,6 +788,16 @@ def main():
             from strategy_calibration import run_calibration_backtest
             run_calibration_backtest(conn, run_id)
 
+        # ---- Step 12: Momentum Strategy Backtest ----
+        if not args.dry_run:
+            from strategy_momentum import run_momentum_backtest
+            run_momentum_backtest(conn, run_id)
+
+        # ---- Step 13: Streak Strategy Backtest ----
+        if not args.dry_run:
+            from strategy_streak import run_streak_backtest
+            run_streak_backtest(conn, run_id)
+
     except Exception as e:
         conn.rollback()
         print(f'[Analysis] ERROR: {e}', file=sys.stderr)
