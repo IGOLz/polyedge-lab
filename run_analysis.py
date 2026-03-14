@@ -778,6 +778,11 @@ def main():
         print('=' * 60)
         print(f'[Analysis] Done in {duration:.1f}s')
 
+        # ---- Step 10: Farming Strategy Backtest ----
+        if not args.dry_run:
+            from strategy_farming import run_farming_backtest
+            run_farming_backtest(conn, run_id)
+
     except Exception as e:
         conn.rollback()
         print(f'[Analysis] ERROR: {e}', file=sys.stderr)
